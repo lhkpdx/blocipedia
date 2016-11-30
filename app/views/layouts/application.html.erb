@@ -2,13 +2,22 @@
 <html>
 <head>
   <title>Blocipedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+       <ul class="nav nav-tabs">
+         <li><%= link_to "Blocipedia", welcome_index_path %></li>
+         <li><%= link_to "About", welcome_about_path %></li>
+         <li><%= render 'devise/menu/registration_items' %></li>
+          <li><%= render 'devise/menu/login_items' %></li>
+       </ul>
+     <%= yield %>
+  </div>
 
 </body>
 </html>
