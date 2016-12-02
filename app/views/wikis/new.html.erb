@@ -1,0 +1,16 @@
+<h2>Create a Wiki Article</h2>
+ <div class="row">
+   <div class="col-md-4">
+     <p>Guidelines</p>
+     <ul>
+       <li>Only interesting stuff</li>
+       <li>If you try to sell us something, we'll hunt you down</li>
+       <li>3 points for dry humor</li>
+       <li>You can only delete your own stuff</li>
+     </ul>
+   </div>
+   <div class="col-md-8">
+     <%= render partial: 'form', locals: { title: @title, body: @body, private: @private } %>
+   </div>
+ </div>
+ </div>

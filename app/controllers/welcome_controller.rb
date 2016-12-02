@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
-  def index
-  end
+  before_action :authenticate_user!
 
-  def about
+  def index
+    @wikis = Wiki.all
+
   end
 end

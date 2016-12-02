@@ -14,8 +14,13 @@
          <li><%= link_to "Blocipedia", welcome_index_path %></li>
          <li><%= link_to "About", welcome_about_path %></li>
          <li><%= render 'devise/menu/registration_items' %></li>
-          <li><%= render 'devise/menu/login_items' %></li>
-       </ul>
+         <li><%= render 'devise/menu/login_items' %></li>
+         <% if user_signed_in? %>
+          <ul class="nav navbar-text"><%="You are logged in as #{current_user.email}" %></ul>
+         <% end %>
+        </ul>
+
+
      <%= yield %>
   </div>
 

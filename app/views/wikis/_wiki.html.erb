@@ -1,0 +1,11 @@
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to wiki.title, wiki %><br>
+      <small>
+        submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.username %>
+        <br>
+    </small>
+    </h4>
+  </div>
+</div>
