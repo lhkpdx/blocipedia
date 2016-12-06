@@ -2,17 +2,45 @@ require 'random_data'
 
 5.times do
    User.create!(
-     username:     RandomData.random_name,
-     email:    RandomData.random_email,
-     password: RandomData.random_sentence
+     username: RandomData.random_name,
+     email: RandomData.random_email,
+     password: RandomData.random_sentence,
+     role: RandomData.random_role
      )
  end
  users = User.all
- User.create!(
-  username: "Laura",
-  email: "me@me.com",
-  password: "ffffff"
+
+
+
+ admin = User.new(
+  username: "Admin User",
+  email: "admin@me.com",
+  password: "ffffff",
+  password_confirmation: "ffffff",
+  role: 'admin'
  )
+ admin.skip_confirmation!
+ admin.save!
+
+ premium = User.new(
+  username: "Premium User",
+  email: "premium@me.com",
+  password: "ffffff",
+  role: 'premium',
+  password_confirmation: "ffffff"
+ )
+ premium.skip_confirmation!
+ premium.save!
+
+ standard = User.new(
+  username: "Standard User",
+  email: "standard@me.com",
+  password: "ffffff",
+  password_confirmation: "ffffff",
+  role: 'standard'
+ )
+ standard.skip_confirmation!
+ standard.save!
 
  50.times do
    wiki = Wiki.create!(
@@ -22,9 +50,6 @@ require 'random_data'
      private:  RandomData.random_private
    )
     wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-
-
-
  end
  wikis = Wiki.all
 

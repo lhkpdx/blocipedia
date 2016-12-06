@@ -12,12 +12,8 @@ class WikisController < ApplicationController
     end
 
     def create
-      @wiki = Wiki.new
-      @wiki.title = params[:wiki][:title]
-      @wiki.body = params[:wiki][:body]
-      @wiki.private = params[:wiki][:private]
-      @wiki.user_id = 1
-      @wiki.user = current_user
+      # @wiki = Wiki.new(wiki_params)
+      @wiki = current_user.wikis.build(wiki_params)
 
       if @wiki.save
         flash[:notice] = "Wiki was saved"
@@ -34,10 +30,7 @@ class WikisController < ApplicationController
 
     def update
        @wiki = Wiki.find(params[:id])
-       @wiki.title = params[:wiki][:title]
-       @wiki.body = params[:wiki][:body]
-       @wiki.private = params[:wiki][:private]
-       @wiki.user = current_user
+       @wiki.assign_attributes(wiki_params)
          if @wiki.save
            flash[:notice] = "Wiki was updated."
            redirect_to @wiki
@@ -60,11 +53,10 @@ class WikisController < ApplicationController
 
       private
 
-      def wiki_params
-        @wiki.title = params[:title]
-        @wiki.body = params[:body]
-        @wiki.private = params[:private]
-        @wiki.user_id = params[:user_id]
-      end
+       def wiki_params
+         params.require(:wiki).permit(:title, :body, :private, :reference)
+       end
+
+
 
 end

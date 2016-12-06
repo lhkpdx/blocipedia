@@ -21,10 +21,15 @@
     <%= f.text_area :body, rows: 20, class: 'form-control', placeholder: "Put all the good stuff here" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :private, class: 'checkbox' do %><br>
-    <%= f.check_box :private %> Private topic
-    <% end %>
-    <%= f.submit "Save", class: 'btn btn-success' %>
-  </div>
+  <%= original_submission_by %>
+
+  <% if user_is_authorized_for_private_wikis %>
+    <div class="form-group">
+      <%= f.label :Premium_members_only, class: 'checkbox' %>
+      <%= f.check_box :private %> Choose this option for editing by <strong>Premium members</strong> only.
+  <% end %>
+      <br><br>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+      <%= link_to "Back to List", wikis_path, class: "btn btn-info" %></li>
+    </div>
 <% end %>

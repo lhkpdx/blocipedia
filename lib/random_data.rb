@@ -40,4 +40,11 @@ module RandomData
      value.shuffle!
      value[0]
    end
+
+   def self.random_role
+     value = ["standard", "premium"]
+     value.shuffle!
+     value[0]
+   end
+
  end

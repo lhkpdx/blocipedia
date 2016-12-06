@@ -10,8 +10,11 @@
  <br>
    <div class="col-md-4">
      <%= link_to "Back to List", wikis_path, class: 'btn btn-success' %>
-     <% unless @wiki.private?%>
+     <% if @wiki.private? && user_is_authorized_for_private_wikis%>
         <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
         <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
-      <% end %>
+     <% elsif !@wiki.private? %>
+     <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
+     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
+     <% end %>
    </div>

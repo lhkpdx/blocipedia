@@ -3,6 +3,7 @@ source 'https://rubygems.org'
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '4.2.5'
  gem 'devise'
+ gem 'pundit'
 
  group :production do
    gem 'pg'

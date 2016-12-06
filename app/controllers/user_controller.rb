@@ -1,19 +1,39 @@
 class UsersController < ApplicationController
-    def new
-      @user = User.new
-    end
+  before_action :authenticate_user!
+  after_action :verify_authorized
 
-    def show
-       @user = User.find(params[:id])
-       @wikis = @user.wikis
-    end
+def index
+  @users = User.all
+  authorize User
+end
 
-    private
+def show
+  @user = User.find(params[:id])
+  authorize @user
+end
 
-    def user_params
-       @user = User.new
-       @user.username = params[:user][:username]
-       @user.email = params[:user][:email]
-       @user.password = params[:user][:password]
-    end
- end
+def update
+  @user = User.find(params[:id])
+  authorize @user
+  if @user.update_attributes(secure_params)
+    redirect_to users_path, :notice => "User updated."
+  else
+    redirect_to users_path, :alert => "Unable to update user."
+  end
+end
+
+def destroy
+  user = User.find(params[:id])
+  authorize user
+  user.destroy
+  redirect_to users_path, :notice => "User deleted."
+end
+
+private
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :role)
+  end
+
+
+end
