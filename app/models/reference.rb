@@ -1,3 +1,3 @@
 class Reference < ActiveRecord::Base
-  has_many :wikis
+  belongs_to :wiki
 end

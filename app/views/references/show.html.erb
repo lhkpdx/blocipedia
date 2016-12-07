@@ -1,2 +1,12 @@
-<h1>References#show</h1>
-<p>Find me in app/views/references/show.html.erb</p>
+<h2><%= @reference.name %></h2>
+
+ <div class="row">
+   <div class="col-md-8">
+     <p class="lead">
+       <pre><%= @reference.date %>    <%= @reference.link %></pre>
+       </p>
+    </div>
+ </div>
+ <br>
+   <%= link_to "Back to List", wikis_path, class: 'btn btn-primary' %><br>
+   </div>

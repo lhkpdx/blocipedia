@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206195007) do
+ActiveRecord::Schema.define(version: 20161207015727) do
 
   create_table "references", force: :cascade do |t|
     t.string   "name"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20161206195007) do
     t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "wiki_id"
   end
+
+  add_index "references", ["wiki_id"], name: "index_references_on_wiki_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -52,8 +55,9 @@ ActiveRecord::Schema.define(version: 20161206195007) do
     t.text     "body"
     t.boolean  "private"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "reference_id"
   end
 
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"

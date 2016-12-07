@@ -5,13 +5,14 @@ module WikisHelper
   end
 
   def original_submission_by
-      @wiki = Wiki.find(params[:id])
+    if @wiki.created_at?
       @role = @wiki.user.role
         if current_user == @wiki.user
           "Original submission by your badass self!"
         else
           "Original submission by one of our #{@role} members."
         end
+      end
 
     end
 

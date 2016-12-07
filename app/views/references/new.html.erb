@@ -1,2 +1,6 @@
-<h1>References#new</h1>
-<p>Find me in app/views/references/new.html.erb</p>
+<h2>Create a Wiki Resource</h2>
+ <div class="row">
+    <div class="col-md-8">
+     <%= render partial: 'form', locals: { name: @name, date: @date, link: @link } %>
+   </div>
+ </div>
