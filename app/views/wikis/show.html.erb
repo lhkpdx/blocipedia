@@ -5,16 +5,14 @@
    <div class="col-md-8">
      <p class="lead">
        <%= @wiki.body %></p>
-    </div>
- </div>
- <br>
-   <div class="col-md-4">
-     <%= link_to "Back to List", wikis_path, class: 'btn btn-success' %>
-     <% if @wiki.private? && user_is_authorized_for_private_wikis%>
+
+      </div>
+      <%= original_submission_by %><br><br>
+
+     <% if user_is_authorized_to_edit_wikis? %>
         <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
         <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
-     <% elsif !@wiki.private? %>
-     <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
-     <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
      <% end %>
+     <br><br><br>
+     <%= link_to "Back to List", wikis_path, class: 'btn btn-primary' %><br>
    </div>

@@ -23,7 +23,7 @@
 
   <%= original_submission_by %>
 
-  <% if user_is_authorized_for_private_wikis %>
+  <% if user_is_authorized_to_mark_wikis_private? %>
     <div class="form-group">
       <%= f.label :Premium_members_only, class: 'checkbox' %>
       <%= f.check_box :private %> Choose this option for editing by <strong>Premium members</strong> only.
@@ -31,5 +31,5 @@
       <br><br>
       <%= f.submit "Save", class: 'btn btn-success' %>
       <%= link_to "Back to List", wikis_path, class: "btn btn-info" %></li>
-    </div>
+   </div>
 <% end %>
