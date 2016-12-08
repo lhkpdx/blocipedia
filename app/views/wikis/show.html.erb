@@ -4,7 +4,16 @@
  <div class="row">
    <div class="col-md-8">
      <p class="lead">
-       <%= @wiki.body %></p>
+       <%= @wiki.body %>
+     </p>
+     <p>
+       <% @references.each do |r| %>
+         <%= r.name %>
+         <a href="<%= r.link %>" target="_blank"><%= r.link %></a>
+         <%= link_to r.link, r.link %>
+         <%= r.date %>
+       <% end %>
+     </p>
 
       </div>
       <%= original_submission_by %><br><br>

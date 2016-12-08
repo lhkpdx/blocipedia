@@ -5,6 +5,7 @@ class WikisController < ApplicationController
 
     def show
       @wiki = Wiki.find(params[:id])
+      @references = Reference.where(wiki_id: @wiki.id)
     end
 
     def new
