@@ -1,0 +1,11 @@
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to reference.name, reference %>
+      <small>
+        submitted <%= time_ago_in_words(reference.created_at) %> ago by <%= reference.wiki.user.email %>
+        <br>
+    </small>
+    </h4>
+  </div>
+</div>

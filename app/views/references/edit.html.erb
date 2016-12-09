@@ -1,0 +1,15 @@
+<h1>Edit Your Reference</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <p>Guidelines</p>
+    <ul>
+      <li>Only interesting stuff</li>
+      <li>Not for marketing</li>
+      <li>3 points for dry humor</li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <%= render partial: 'form', locals: { name: @name, link: @link } %>
+  </div>
+</div>

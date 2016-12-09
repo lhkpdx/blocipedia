@@ -6,22 +6,27 @@
      <p class="lead">
        <%= @wiki.body %>
      </p>
+     <p><small><%= original_submission_by %></small></p><br>
      <p>
+       <h3>References:</h3>
+       <%= link_to "Add a new reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
+
        <% @references.each do |r| %>
-         <%= r.name %>
-         <a href="<%= r.link %>" target="_blank"><%= r.link %></a>
-         <%= link_to r.link, r.link %>
-         <%= r.date %>
+          <%= r.created_at %>
+          <%= r.name %>
+          <%= link_to r.link, r.link %><br>
        <% end %>
      </p>
-
+      <div class="row">
+        <div class="col-md-8">
+          <br><br><br>
+          <% if user_is_authorized_to_edit_wikis? %>
+            <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
+            <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
+          <% end %>
+          <br><br><br>
+          <%= link_to "Back to List", wikis_path, class: 'btn btn-primary' %><br>
+        </div>
       </div>
-      <%= original_submission_by %><br><br>
-
-     <% if user_is_authorized_to_edit_wikis? %>
-        <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
-        <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
-     <% end %>
-     <br><br><br>
-     <%= link_to "Back to List", wikis_path, class: 'btn btn-primary' %><br>
-   </div>
+    </div>
+  </div>

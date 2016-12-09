@@ -1,0 +1,28 @@
+<%= form_for [:wiki, @reference] do |f| %>
+
+  <% if reference.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(reference.errors.count, "error") %>.</h4>
+      <ul>
+        <% reference.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter a description here" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :link %>
+    <%= f.text_area :link, rows: 2, class: 'form-control', placeholder: "Enter your link here" %>
+  </div>
+
+    <br><br>
+    <%= f.submit "Save", class: 'btn btn-success' %>
+
+   </div>
+<% end %>
