@@ -22,12 +22,13 @@ class ReferencesController < ApplicationController
   end
 
   def edit
-    @reference = Reference.find(params[:id])
+    @wiki = Wiki.find(params[:wiki_id])
+    @reference = @wiki.references.find(params[:id])
   end
 
   def show
-    @reference = Reference.find(params[:id])
-
+    @wiki = Wiki.find(params[:wiki_id])
+    @reference = @wiki.references.find(params[:id])
   end
 
   def update
@@ -44,6 +45,15 @@ class ReferencesController < ApplicationController
    end
 
   def destroy
+    @wiki = Wiki.find(params[:wiki_id])
+    @reference = @wiki.references.find(params[:id])
+      if @reference.destroy
+         flash[:notice] = "\"#{@reference.name}\" was deleted successfully."
+         redirect_to @reference.wiki
+       else
+         flash.now[:alert] = "There was an error deleting the reference."
+         render :show
+       end
   end
 
   private
