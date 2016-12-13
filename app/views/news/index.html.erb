@@ -1,0 +1,32 @@
+<h1>Blocipedia News Feed</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+    <br>
+        <h4><%= link_to news.subject, news %> </h4>
+        Originally Submitted <%= time_ago_in_words(news.created_at) %> ago by <%= news.user.username %>
+        <% if news.created_at < news.updated_at %><br>
+          Last updated: <%= time_ago_in_words(news.updated_at) %> ago.
+        <% end %>
+        <br>
+        <% if news.user == current_user %>
+          <%= link_to 'Edit | ', edit_news_path(news) %>
+          <%= link_to 'Delete', news, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        <br>
+        <% end %><br><br>
+   </tbody>
+
+</table>
+
+
+
+<%= link_to 'Create a new News article', new_news_path, class: "btn, btn-lg btn-info" %>
+<%= link_to 'Back to Wikis', wikis_path, class: "btn, btn-lg btn-info" %>

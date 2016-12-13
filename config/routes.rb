@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :wikis do
       resources :references
   end
+  resources :news
 
   get 'welcome/index'
 

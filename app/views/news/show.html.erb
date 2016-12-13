@@ -1,0 +1,21 @@
+<div>
+  <br>
+  Article created at <%= @news.created_at %> by <%= @news.user.email %><br>
+  <h4><%= @news.subject %></h4>
+  <%= @news.article %>
+</div>
+
+<br>
+
+<div>
+  <% if @news.user == current_user %>
+    <%= link_to 'Edit | ', edit_news_path(@news) %>
+    <%= link_to 'Delete', @news, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+
+</div>
+<br>
+<div>
+  <%= link_to 'Back to News Stream', news_index_path, class: "btn btn-info" %>
+  <%= link_to "Back to Wikis", wikis_path, class: "btn btn-info" %><br>
+</div>

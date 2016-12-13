@@ -12,6 +12,7 @@
        <%= link_to "Add a new reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
 
        <% @references.each do |r| %>
+          <%= link_to "Edit", edit_wiki_reference_path(@wiki, r) %>
           <%= r.created_at %>
           <%= r.name %>
           <%= link_to r.link, r.link %><br>

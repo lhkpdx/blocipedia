@@ -41,14 +41,22 @@ require 'random_data'
  standard.skip_confirmation!
  standard.save!
 
- # 10.times do
- #   Reference.create!(
- #   name:  RandomData.random_sentence,
- #   date:  Time.now.to_datetime,
- #   link: "http://google.com"
- #   )
- # end
- # references = Reference.all
+ 10.times do
+   Reference.create!(
+   name:  RandomData.random_sentence,
+   date:  Time.now.to_datetime,
+   link: "http://google.com"
+   )
+ end
+ references = Reference.all
+
+ 20.times do
+   News.create!(
+   subject: RandomData.random_sentence,
+   article: RandomData.random_paragraph,
+   user: users.sample
+   )
+ end
 
  50.times do
    wiki = Wiki.create!(
@@ -56,7 +64,7 @@ require 'random_data'
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph,
      private:  RandomData.random_private,
-    #  reference_id:  references.first.id
+     #reference_id:  references.sample
    )
     wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
  end
@@ -65,3 +73,5 @@ require 'random_data'
   puts "Seed finished"
   puts "#{User.count} users created"
   puts "#{Wiki.count} wikis created"
+  puts "#{Reference.count} references created"
+  puts "#{News.count} news articles created"
