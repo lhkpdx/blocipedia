@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :references
   end
   resources :news
+  resources :charges
 
   get 'welcome/index'
 

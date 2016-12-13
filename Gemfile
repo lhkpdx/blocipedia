@@ -23,6 +23,7 @@ source 'https://rubygems.org'
  gem 'figaro'
  gem 'pry'
  gem 'bootstrap-sass'
+ gem 'stripe'
 
  group :development, :test do
    gem 'byebug'
