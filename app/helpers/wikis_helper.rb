@@ -20,12 +20,17 @@ module WikisHelper
   end
 
   def user_is_authorized_to_mark_wikis_private?
-    ((current_user && current_user.premium?) ||
-      (current_user && current_user.admin?)) &&
-      current_user_is_owner?
+    if @wiki.created_at?
+      ((current_user && current_user.premium?) ||
+        (current_user && current_user.admin?)) &&
+        current_user_is_owner?
+    else
+      ((current_user && current_user.premium?) ||
+        (current_user && current_user.admin?))
+    end
   end
-
-  def user_is_authorized_to_edit_private_wikis?
+  def wiki_references_exist?
+    @wiki.references.exists?(@wiki)
   end
 
   def wiki_is_private?
@@ -34,6 +39,14 @@ module WikisHelper
 
   def wiki_is_public?
     @wiki.private == false
+  end
+
+  def wiki_status
+    if @wiki.created_at? && wiki_is_public?
+       "This is a public Wiki -- anyone can participate."
+    elsif @wiki.created_at? && wiki_is_private?
+      "This is a private Wiki -- only Premium members (like you) can participate."
+    end
   end
 
   def user_is_authorized_to_edit_wikis?

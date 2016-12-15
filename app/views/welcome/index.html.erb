@@ -1,9 +1,23 @@
-<h2>Welcome to Blocipedia<br><small>Ths is a friendly gathering place<br>where you can get your "knows" on!</small></h2>
+<h2>Welcome to Blocipedia<br><small>This is a supercalifragilistic gathering place where you can get your "knows" on!</small></h2>
 
   <br><br>
 
-  <%= link_to "View a list of all available Wiki Articles", wikis_path, class: "btn btn-lg btn-info"%></li>
-  <br><br>
-  <%= link_to "Contribute Your Own Masterpiece           ", new_wiki_path, class: "btn btn-lg btn-success" %></li>
-  <br><br>
-  <%= link_to "News of the Day                           ", news_index_path, class: "btn btn-lg btn-success " %></li>
+  <%= link_to "View a list of all available Wiki Articles", wikis_path, class: "btn btn-info active"%></li>
+  <%= link_to "Contribute Your Own Masterpiece           ", new_wiki_path, class: "btn btn-success active" %></li>
+  <%= link_to "News of the Day                           ", news_index_path, class: "btn btn-primary active " %></li>
+
+
+
+    <% if current_user.role == "standard" %><br><br><br>
+      <h4>It's never too late for a Premium Account!</h4>
+      <ul>
+        <li>Low, one-time fee for life-time access! </li>
+        <li>All the benefits of the basic program</li>
+        <li>BUT, you get unlimited access to private wikis (you must be very intrigued!)</li>
+      </ul>
+      <%= link_to "Get it now!", new_subscriber_path, class: 'btn btn-default btn-lg active'%>
+    <% else %>
+    <br><br>
+    <h4>Thanks for being a Premium Member!</h4>
+    <% end %>
+  </div>

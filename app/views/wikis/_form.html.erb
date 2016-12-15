@@ -21,7 +21,8 @@
     <%= f.text_area :body, rows: 20, class: 'form-control', placeholder: "Put all the good stuff here" %>
   </div>
 
-  <%= original_submission_by %>
+  <%= original_submission_by %><br>
+  <%= wiki_status %>
 
   <% if user_is_authorized_to_mark_wikis_private? %>
     <div class="form-group">
