@@ -7,6 +7,12 @@
        <%= @wiki.body %>
      </p>
      <p><small><%= original_submission_by %></small></p><br>
+     <% @wiki_events.each do |event| %>
+        <%= event.created_at %>
+        <%= event.user.email %>
+        <%= event.action %>
+        <br>
+     <% end %>
      <p>
        <% if wiki_references_exist? || current_user_is_owner? %>
           <h2>References for this Wiki:</h2>

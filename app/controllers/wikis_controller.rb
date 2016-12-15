@@ -6,6 +6,7 @@ class WikisController < ApplicationController
     def show
       @wiki = Wiki.find(params[:id])
       @references = Reference.where(wiki_id: @wiki.id)
+      @wiki_events = WikiEvent.where(wiki: @wiki)
     end
 
     def new
@@ -34,6 +35,7 @@ class WikisController < ApplicationController
        @wiki.assign_attributes(wiki_params)
          if @wiki.save
            flash[:notice] = "Wiki was updated."
+           WikiEvent.create(wiki: @wiki, user: current_user, action: "Edited")
            redirect_to @wiki
          else
            flash.now[:alert] = "There was an error saving the post. Please try again."
