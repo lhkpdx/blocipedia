@@ -24,7 +24,7 @@ source 'https://rubygems.org'
  gem 'pry'
  gem 'bootstrap-sass'
  gem 'stripe'
-
+ 
  group :development, :test do
    gem 'byebug'
    gem 'spring'
