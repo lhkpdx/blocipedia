@@ -18,4 +18,11 @@ class SubscribersController < ApplicationController
       redirect_to subscriber_path
   end
 
+  def downgrade_to_standard
+    current_user.role = "standard"
+    current_user.save!
+
+    redirect_to subscriber_path(1)
+  end
+
 end

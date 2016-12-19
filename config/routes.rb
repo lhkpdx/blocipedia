@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :news
   resources :subscribers
   devise_for :users
+  post 'subscribers/downgrade_to_standard' 
 
   get 'welcome/index'
 

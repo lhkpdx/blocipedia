@@ -1,5 +1,8 @@
+<% if current_user.premium? %>
 <h5>Thank you! Your payment of <strong>$9.99</strong> was approved and you are now a Premium member!</h5>
-
+<% else %>
+<h5>You are now back to a Standard Membership!<h5>
+  <% end %>
 <br>
 <h3>What would you like to do now?</h3>
 <br>

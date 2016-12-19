@@ -19,5 +19,8 @@
     <% else %>
     <br><br>
     <h4>Thanks for being a Premium Member!</h4>
+    <%= link_to "You can downgrade to Standard anytime", subscribers_downgrade_to_standard_path, method: :post %>
     <% end %>
+
+
   </div>

@@ -3,4 +3,4 @@ class Wiki < ActiveRecord::Base
   has_many :references
   has_many :wiki_events
 
-end
+  end

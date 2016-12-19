@@ -1,8 +1,8 @@
 
    <br>
    <%= @reference.created_at %>
-   <%= @reference.name %>
-   <%= link_to @reference.link, @reference.link %>
+   <%= markdown(@reference.name) %>
+   <%= link_to markdown(@reference.link), @reference.link %>
    <br><br><br><br>
 
    <%= link_to "Edit Reference", edit_wiki_reference_path, class: 'btn btn-success' %>

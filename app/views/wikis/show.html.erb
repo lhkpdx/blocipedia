@@ -1,21 +1,24 @@
 
-<h1><%= @wiki.title %></h1>
-
+<h1><%= (@wiki.title) %></h1>
  <div class="row">
    <div class="col-md-8">
      <p class="lead">
-       <%= @wiki.body %>
+       <%= markdown(@wiki.body) %>
      </p>
      <p><small><%= original_submission_by %></small></p><br>
-     <% @wiki_events.each do |event| %>
-        <%= event.created_at %>
-        <%= event.user.email %>
-        <%= event.action %>
-        <br>
+
+     <% if @wiki_events %>
+       <h3>Updates to this wiki: </h3>
+       <% @wiki_events.each do |event| %>
+          <%= event.created_at %>
+          <%= event.user.email %>
+          <%= event.action %>
+          <br>
+       <% end %>
      <% end %>
      <p>
        <% if wiki_references_exist? || current_user_is_owner? %>
-          <h2>References for this Wiki:</h2>
+          <h3>References for this Wiki:</h3>
             <% if current_user_is_owner? %>
             Please add at least one reference<br>
               <%= link_to "Add a reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
@@ -23,8 +26,8 @@
           <% @references.each do |r| %>
             <%= link_to "Edit", edit_wiki_reference_path(@wiki, r) %>
             <%= r.created_at %>
-            <%= r.name %>
-            <%= link_to r.link, r.link %><br>
+            <%= markdown(r.name) %>
+            <%= link_to markdown(r.link), r.link %><br>
          <% end %>
       <% end %>
      </p>
