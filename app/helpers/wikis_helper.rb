@@ -30,7 +30,7 @@ module WikisHelper
     end
   end
   def wiki_references_exist?
-    @wiki.references.exists?(@wiki)
+    @wiki.references.exists?(@wiki.id)
   end
 
   def wiki_is_private?
@@ -67,6 +67,4 @@ module WikisHelper
       end
     end
 
-
-
-end
+  end

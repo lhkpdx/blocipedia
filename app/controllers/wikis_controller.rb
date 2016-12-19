@@ -16,6 +16,7 @@ class WikisController < ApplicationController
     def create
       @wiki = Wiki.new(wiki_params)
       @wiki.user = current_user
+      WikiEvent.create(wiki: @wiki, user: current_user, action: "Created Wiki")
 
       if @wiki.save
         flash[:notice] = "Wiki was saved"
@@ -35,7 +36,7 @@ class WikisController < ApplicationController
        @wiki.assign_attributes(wiki_params)
          if @wiki.save
            flash[:notice] = "Wiki was updated."
-           WikiEvent.create(wiki: @wiki, user: current_user, action: "Edited")
+           WikiEvent.create(wiki: @wiki, user: current_user, action: "Updated Wiki")
            redirect_to @wiki
          else
            flash.now[:alert] = "There was an error saving the post. Please try again."

@@ -1,12 +1,9 @@
-
    <br>
    <%= @reference.created_at %>
    <%= markdown(@reference.name) %>
    <%= link_to markdown(@reference.link), @reference.link %>
    <br><br><br><br>
-
    <%= link_to "Edit Reference", edit_wiki_reference_path, class: 'btn btn-success' %>
    <%= link_to "Delete Reference", [@reference.wiki, @reference], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Reference?' } %>
-
- <br><br>
- <%= link_to "Back to Wiki", wiki_path(@reference.wiki), class: 'btn btn-info' %><br>
+   <br><br>
+   <%= link_to "Back to Wiki", wiki_path(@reference.wiki), class: 'btn btn-info' %><br>

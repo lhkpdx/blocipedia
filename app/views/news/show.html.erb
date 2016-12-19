@@ -4,15 +4,12 @@
   <h4><%= @news.subject %></h4>
   <%= @news.article %>
 </div>
-
 <br>
-
 <div>
   <% if @news.user == current_user %>
     <%= link_to 'Edit | ', edit_news_path(@news) %>
     <%= link_to 'Delete', @news, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-
 </div>
 <br>
 <div>

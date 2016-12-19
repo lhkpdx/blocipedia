@@ -1,12 +1,8 @@
 <h2>Welcome to Blocipedia<br><small>This is a supercalifragilistic gathering place where you can get your "knows" on!</small></h2>
-
-  <br><br>
-
+<br><br>
   <%= link_to "View a list of all available Wiki Articles", wikis_path, class: "btn btn-info active"%></li>
   <%= link_to "Contribute Your Own Masterpiece           ", new_wiki_path, class: "btn btn-success active" %></li>
   <%= link_to "News of the Day                           ", news_index_path, class: "btn btn-primary active " %></li>
-
-
 
     <% if current_user.role == "standard" %><br><br><br>
       <h4>It's never too late for a Premium Account!</h4>
@@ -18,9 +14,6 @@
       <%= link_to "Get it now!", new_subscriber_path, class: 'btn btn-default btn-lg active'%>
     <% else %>
     <br><br>
-    <h4>Thanks for being a Premium Member!</h4>
-    <%= link_to "You can downgrade to Standard anytime", subscribers_downgrade_to_standard_path, method: :post %>
+      <h4>Thanks for being a Premium Member!</h4>
+    <h5><%= link_to "You can downgrade to Standard anytime by clicking on this link", subscribers_downgrade_to_standard_path, method: :post %></h5>
     <% end %>
-
-
-  </div>

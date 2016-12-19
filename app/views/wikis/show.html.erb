@@ -7,38 +7,62 @@
      </p>
      <p><small><%= original_submission_by %></small></p><br>
 
-     <% if @wiki_events %>
-       <h3>Updates to this wiki: </h3>
-       <% @wiki_events.each do |event| %>
-          <%= event.created_at %>
-          <%= event.user.email %>
-          <%= event.action %>
-          <br>
-       <% end %>
+      <% if @wiki_events %>
+        <h3>Updates for this Wiki: </h3>
+          <table class="table">
+              <tr>
+               <th>Created At</th>
+               <th>User</th>
+               <th>Action</th>
+              </tr>
+            <% @wiki_events.order(:created_at).each do |event| %>
+              <tr>
+                <td><%= event.created_at %></td>
+                <td><%= event.user.email %></td>
+                <td><%= event.action %></td>
+              </tr>
+           <% end %>
+        </table>
      <% end %>
-     <p>
-       <% if wiki_references_exist? || current_user_is_owner? %>
-          <h3>References for this Wiki:</h3>
-            <% if current_user_is_owner? %>
-            Please add at least one reference<br>
-              <%= link_to "Add a reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
+
+     <% if @references || current_user_is_owner? %>
+        <h3>References for this Wiki:</h3>
+            <% if current_user_is_owner? && !@references %>
+                Please add at least one reference<br>
+                <%= link_to "Add a reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
+            <% else %>
+                <%= link_to "Add a reference", new_wiki_reference_path(@wiki), class: "btn btn-info" %><br><br>
             <% end %>
-          <% @references.each do |r| %>
-            <%= link_to "Edit", edit_wiki_reference_path(@wiki, r) %>
-            <%= r.created_at %>
-            <%= markdown(r.name) %>
-            <%= link_to markdown(r.link), r.link %><br>
-         <% end %>
+            <br>
+     <%end%>
+
+    <% if @references %>
+      <table class="table">
+        <tr>
+          <th>Edit</th>
+          <th>Created At</th>
+          <th>Description</th>
+          <th>Link</th>
+        </tr>
+        <% @references.order(:created_at).each do |r| %>
+          <tr>
+            <td><%= link_to "Edit", edit_wiki_reference_path(@wiki, r) %></td>
+            <td><%= r.created_at %></td>
+            <td><%= markdown(r.name) %></td>
+            <td><%= link_to markdown(r.link), r.link %></td>
+          </tr>
+        <% end %>
+        </table>
       <% end %>
-     </p>
-      <div class="row">
-        <div class="col-md-8">
-          <br><br><br>
-          <%= link_to "Back to List", wikis_path, class: 'btn btn-info' %>
-          <% if user_is_authorized_to_edit_wikis? %>
-            <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
-            <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
-          <% end %>
+
+          <div class="row">
+            <div class="col-md-8">
+              <br><br><br>
+              <%= link_to "Back to List", wikis_path, class: 'btn btn-info' %>
+              <% if user_is_authorized_to_edit_wikis? %>
+                <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
+                <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this Wiki?' } %>
+              <% end %>
         </div>
       </div>
     </div>
